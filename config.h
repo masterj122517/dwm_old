@@ -111,8 +111,8 @@ static Key keys[] = {
     { MODKEY,              XK_q,            killclient,       {0} },                     /* super q            |  关闭窗口 */
     { MODKEY|ControlMask,  XK_F12,          quit,             {0} },                     /* super ctrl f12     |  退出dwm */
 
-	{ MODKEY|ShiftMask,    XK_space,        selectlayout,     {.v = &layouts[1]} },      /* super shift space  |  切换到网格布局 */
-	{ MODKEY,              XK_p,            showonlyorall,    {0} },                     /* super a            |  切换 只显示一个窗口 / 全部显示 */
+  	{ MODKEY|ShiftMask,    XK_space,        selectlayout,     {.v = &layouts[1]} },      /* super shift space  |  切换到网格布局 */
+  	{ MODKEY,              XK_p,            showonlyorall,    {0} },                     /* super a            |  切换 只显示一个窗口 / 全部显示 */
 
     { MODKEY|ControlMask,  XK_equal,        setgap,           {.i = -6} },               /* super ctrl up      |  窗口增大 */
     { MODKEY|ControlMask,  XK_minus,        setgap,           {.i = +6} },               /* super ctrl down    |  窗口减小 */
@@ -157,7 +157,7 @@ static Key keys[] = {
     TAGKEYS(XK_m, 10, "~/scripts/music_player.sh", "pavucontrol")
     TAGKEYS(XK_z, 11, "icalingua", "icalingua")
     TAGKEYS(XK_x, 12, "/opt/apps/com.qq.weixin.deepin/files/run.sh", "/opt/apps/com.qq.weixin.deepin/files/run.sh")
-    TAGKEYS(XK_Z, 13, "/opt/apps/com.qq.weixin.work.deepin/files/run.sh", "/opt/apps/com.qq.weixin.work.deepin/files/run.sh")
+    TAGKEYS(XK_c, 13, "/opt/apps/com.qq.weixin.work.deepin/files/run.sh", "/opt/apps/com.qq.weixin.work.deepin/files/run.sh")
 };
 static Button buttons[] = {
     /* click               event mask       button            function       argument  */
@@ -167,7 +167,7 @@ static Button buttons[] = {
     { ClkStatusText,       0,               Button3,          clickstatusbar,{0} },                                   // 右键        |  点击状态栏   |  根据状态栏的信号执行 ~/scripts/dwmstatusbar.sh $signal R
     { ClkWinTitle,         0,               Button3,          togglewin,     {0} },                                   // 右键        |  点击标题     |  切换窗口显示状态
     { ClkTagBar,           0,               Button1,          view,          {0} },                                   // 左键        |  点击tag      |  切换tag
-	{ ClkTagBar,           0,               Button3,          toggleview,    {0} },                                   // 右键        |  点击tag      |  切换是否显示tag
+  	{ ClkTagBar,           0,               Button3,          toggleview,    {0} },                                   // 右键        |  点击tag      |  切换是否显示tag
     { ClkClientWin,        MODKEY,          Button1,          movemouse,     {0} },                                   // super+左键  |  拖拽窗口     |  拖拽窗口
     { ClkClientWin,        MODKEY,          Button3,          resizemouse,   {0} },                                   // super+右键  |  拖拽窗口     |  改变窗口大小
     { ClkTagBar,           MODKEY,          Button1,          tag,           {0} },                                   // super+左键  |  点击tag      |  将窗口移动到对应tag
