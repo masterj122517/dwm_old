@@ -30,7 +30,7 @@ static const char col_cyan[]        = "#37474F";
 static const char dmenufont[]       = {"Source code pro:size=16"};
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-
+static const char *browsercmd[]  = { "brave", NULL };
 
 static const char *volumetoggle[] = { "/home/masterj/scripts/volume_toggle.sh", NULL};
 static const char *volumeincrease[] = { "/home/masterj/scripts/volume_increase.sh", NULL};
@@ -108,6 +108,14 @@ static Key keys[] = {
     { MODKEY,              XK_b,            focusmon,         {.i = +1} },               /* super b            |  光标移动到另一个显示器 */
     { MODKEY|ShiftMask,    XK_b,            tagmon,           {.i = +1} },               /* super shift b      |  将聚焦窗口移动到另一个显示器 */
 
+    
+	  { MODKEY,              XK_d,      spawn,          {.v = dmenucmd } },
+	  { 0,             	   0x1008ff12,  spawn,          {.v = volumetoggle } },// F1
+	  { 0,             	   0x1008ff11,  spawn,          {.v = volumedecrease } },// F2
+	  { 0,             	   0x1008ff13, 	spawn,          {.v = volumeincrease } },// F3
+
+	  { MODKEY,              XK_w,                    spawn,          {.v = browsercmd } },
+
     { MODKEY,              XK_q,            killclient,       {0} },                     /* super q            |  关闭窗口 */
     { MODKEY|ControlMask,  XK_F12,          quit,             {0} },                     /* super ctrl f12     |  退出dwm */
 
@@ -131,11 +139,7 @@ static Key keys[] = {
     /* spawn + SHCMD 执行对应命令(已下部分建议完全自己重新定义) */
     { MODKEY,              XK_Return, spawn, SHCMD("alacritty") },                                                     /* super enter      | 打开st终端             */
     { MODKEY,              XK_s,      spawn, SHCMD("floatst") },                                                /* super +          | 打开浮动st终端         */
-     
-	  { MODKEY,              XK_d,      spawn,          {.v = dmenucmd } },
-	  { 0,             	   0x1008ff12,  spawn,          {.v = volumetoggle } },// F1
-	  { 0,             	   0x1008ff11,  spawn,          {.v = volumedecrease } },// F2
-	  { 0,             	   0x1008ff13, 	spawn,          {.v = volumeincrease } },// F3
+        
     { 0,                   XK_F12,    spawn,          SHCMD("~/scripts/screenshot") },                                   /* super shift a    | 截图                   */
     { MODKEY|ShiftMask,    XK_q,      spawn,          SHCMD("kill -9 $(xprop | grep _NET_WM_PID | awk '{print $3}')") }, /* super shift q    | 选中某个窗口并强制kill */
     { ShiftMask|ControlMask, XK_c,    spawn,          SHCMD("xclip -o | xclip -selection c") },                          /* super shift c    | 进阶复制               */
@@ -153,7 +157,7 @@ static Key keys[] = {
     TAGKEYS(XK_7, 6,  0,  0)
     TAGKEYS(XK_8, 7,  0,  0)
     TAGKEYS(XK_9, 8,  0,  0)
-    TAGKEYS(XK_w, 9,  "Chromium", "Chromium")
+    //TAGKEYS(XK_w, 9,  "Chromium", "Chromium")
     TAGKEYS(XK_m, 10, "~/scripts/music_player.sh", "pavucontrol")
     TAGKEYS(XK_z, 11, "icalingua", "icalingua")
     TAGKEYS(XK_x, 12, "/opt/apps/com.qq.weixin.deepin/files/run.sh", "/opt/apps/com.qq.weixin.deepin/files/run.sh")
