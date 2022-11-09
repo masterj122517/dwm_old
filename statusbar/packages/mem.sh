@@ -2,7 +2,6 @@
 # MEM
 
 source ~/.profile
-
 this=_mem
 s2d_reset="^d^"
 color="^c#442266^^b#334466^"

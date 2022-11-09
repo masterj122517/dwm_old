@@ -18,7 +18,7 @@ static const int   nmaster               = 1;         /* 主工作区 窗口数�
 static const unsigned int snap           = 10;        /* 边缘依附宽度 */
 static const unsigned int baralpha       = 0xc0;      /* 状态栏透明度 */
 static const unsigned int borderalpha    = 0xdd;      /* 边框透明度 */
-static const char *fonts[]               = { "JetBrainsMono Nerd Font:style=medium:size=13", "monospace:size=13" };
+static const char *fonts[]               = { "Source code pro:size=13","JoyPixels:pixelsize=13:antialias=true:autohint=true"  };
 static const char *colors[][3]           = { [SchemeNorm] = { "#bbbbbb", "#333333", "#444444" }, [SchemeSel] = { "#ffffff", "#37474F", "#42A5F5" }, [SchemeHid] = { "#dddddd", NULL, NULL }, [SchemeSystray] = { "#7799AA", "#7799AA", "#7799AA" }, [SchemeUnderline] = { "#7799AA", "#7799AA", "#7799AA" } };
 static const unsigned int alphas[][3]    = { [SchemeNorm] = { OPAQUE, baralpha, borderalpha }, [SchemeSel] = { OPAQUE, baralpha, borderalpha } };
 
@@ -30,12 +30,9 @@ static const char col_cyan[]        = "#37474F";
 static const char dmenufont[]       = {"Source code pro:size=16"};
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *browsercmd[]  = { "brave", NULL };
+static const char *browsercmd[]  = { "google-chrome-stable", NULL };
 
 static const char *volumetoggle[] = { "/home/masterj/scripts/volume_toggle.sh", NULL};
-static const char *volumeincrease[] = { "/home/masterj/scripts/volume_increase.sh", NULL};
-static const char *volumedecrease[] = { "/home/masterj/scripts/volume_decrease.sh", NULL};
-
 
 /* 自定义脚本位置 */
 static const char *autostartscript = "~/scripts/autostart.sh";
@@ -111,8 +108,8 @@ static Key keys[] = {
     
 	  { MODKEY,              XK_d,      spawn,          {.v = dmenucmd } },
 	  { 0,             	   0x1008ff12,  spawn,          {.v = volumetoggle } },// F1
-	  { 0,             	   0x1008ff11,  spawn,          {.v = volumedecrease } },// F2
-	  { 0,             	   0x1008ff13, 	spawn,          {.v = volumeincrease } },// F3
+	  { 0,             	   0x1008ff11,  spawn,          SHCMD("~/scripts/set_vol.sh down") },// F2
+	  { 0,             	   0x1008ff13, 	spawn,          SHCMD("~/scripts/set_vol.sh up") },// F3
 
 	  { MODKEY,              XK_w,                    spawn,          {.v = browsercmd } },
 
@@ -157,7 +154,7 @@ static Key keys[] = {
     TAGKEYS(XK_7, 6,  0,  0)
     TAGKEYS(XK_8, 7,  0,  0)
     TAGKEYS(XK_9, 8,  0,  0)
-    //TAGKEYS(XK_w, 9,  "Chromium", "Chromium")
+    TAGKEYS(XK_n, 9,  "Chromium", "Chromium")
     TAGKEYS(XK_m, 10, "~/scripts/music_player.sh", "pavucontrol")
     TAGKEYS(XK_z, 11, "icalingua", "icalingua")
     TAGKEYS(XK_x, 12, "/opt/apps/com.qq.weixin.deepin/files/run.sh", "/opt/apps/com.qq.weixin.deepin/files/run.sh")

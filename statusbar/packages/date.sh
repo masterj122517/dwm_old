@@ -2,7 +2,6 @@
 # DATE 获取日期和时间的脚本
 
 source ~/.profile
-
 this=_date
 s2d_reset="^d^"
 color="^c#2D1B46^^b#335566^"
