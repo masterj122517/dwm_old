@@ -18,7 +18,7 @@ static const int   nmaster               = 1;         /* 主工作区 窗口数�
 static const unsigned int snap           = 10;        /* 边缘依附宽度 */
 static const unsigned int baralpha       = 0xc0;      /* 状态栏透明度 */
 static const unsigned int borderalpha    = 0xdd;      /* 边框透明度 */
-static const char *fonts[]               = { "Fira Code Nerd Font :size=15","JoyPixels:pixelsize=15:antialias=true:autohint=true"  };
+static const char *fonts[]               = { "Source code pro:size=13","JoyPixels:pixelsize=13:antialias=true:autohint=true"  };
 static const char *colors[][3]           = { [SchemeNorm] = { "#bbbbbb", "#333333", "#444444" }, [SchemeSel] = { "#ffffff", "#37474F", "#42A5F5" }, [SchemeHid] = { "#dddddd", NULL, NULL }, [SchemeSystray] = { "#7799AA", "#7799AA", "#7799AA" }, [SchemeUnderline] = { "#7799AA", "#7799AA", "#7799AA" } };
 static const unsigned int alphas[][3]    = { [SchemeNorm] = { OPAQUE, baralpha, borderalpha }, [SchemeSel] = { OPAQUE, baralpha, borderalpha } };
 
@@ -30,7 +30,7 @@ static const char col_cyan[]        = "#37474F";
 static const char dmenufont[]       = {"Source code pro:size=16"};
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *browsercmd[]  = { "google-chrome-stable", NULL };
+static const char *browsercmd[]  = { "firefox", NULL };
 
 static const char *volumetoggle[] = { "/home/masterj/scripts/volume_toggle.sh", NULL};
 
@@ -111,7 +111,7 @@ static Key keys[] = {
 	  { 0,             	   0x1008ff11,  spawn,          SHCMD("~/scripts/set_vol.sh down") },// F2
 	  { 0,             	   0x1008ff13, 	spawn,          SHCMD("~/scripts/set_vol.sh up") },// F3
 
-	  { MODKEY,              XK_w,            spawn,          {.v = browsercmd } },
+	  { MODKEY,              XK_w,                    spawn,          {.v = browsercmd } },
 
     { MODKEY,              XK_q,            killclient,       {0} },                     /* super q            |  关闭窗口 */
     { MODKEY|ControlMask,  XK_F12,          quit,             {0} },                     /* super ctrl f12     |  退出dwm */
@@ -134,10 +134,10 @@ static Key keys[] = {
     { MODKEY|Mod1Mask,     XK_Right,        resizewin,        {.ui = H_EXPAND} },        /* super ctrl right   |  调整窗口 */
 
     /* spawn + SHCMD 执行对应命令(已下部分建议完全自己重新定义) */
-    { MODKEY,              XK_Return, spawn,          SHCMD("st") },                                                     /* super enter      | 打开st终端             */
-    { MODKEY,              XK_s,      spawn,          SHCMD("floatst") },                                                /* super +          | 打开浮动st终端         */
+    { MODKEY,              XK_Return, spawn, SHCMD("st") },                                                     /* super enter      | 打开st终端             */
+    { MODKEY,              XK_s,      spawn, SHCMD("floatst") },                                                /* super +          | 打开浮动st终端         */
         
-    { MODKEY|ShiftMask,    XK_s,      spawn,          SHCMD("zoomer.sh")},
+    [ MODKEY,              XK_/,      spawn, SHCMD("zoomer.sh")},
     { 0,                   XK_F12,    spawn,          SHCMD("~/scripts/screenshot") },                                   /* super shift a    | 截图                   */
     { MODKEY|ShiftMask,    XK_q,      spawn,          SHCMD("kill -9 $(xprop | grep _NET_WM_PID | awk '{print $3}')") }, /* super shift q    | 选中某个窗口并强制kill */
     { ShiftMask|ControlMask, XK_c,    spawn,          SHCMD("xclip -o | xclip -selection c") },                          /* super shift c    | 进阶复制               */

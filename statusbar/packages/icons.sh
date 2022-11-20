@@ -9,7 +9,6 @@ signal=$(echo "^s$this^" | sed 's/_//')
 
 update() {
     icons=()
-    [ "$(ps -aux | grep 'aria2' | sed 1d)" ] && icons=(${icons[@]} "")
     [ "$(docker ps | grep 'v2raya')" ] && icons=(${icons[@]} "")
 
     sed -i '/^export '$this'=.*$/d' $DWM/statusbar/temp
