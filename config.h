@@ -30,7 +30,7 @@ static const char col_cyan[]        = "#37474F";
 static const char dmenufont[]       = {"Source code pro:size=16"};
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *browsercmd[]  = { "google-chrome-stable", NULL };
+static const char *browsercmd[]  = { "brave", NULL };
 
 static const char *volumetoggle[] = { "/home/masterj/scripts/volume_toggle.sh", NULL};
 
@@ -45,7 +45,7 @@ static const char *tags[] = { "", "", "", "", "", "", "", "
 static const Rule rules[] = {
     /* class                 instance              title             tags mask     isfloating   noborder  monitor */
     {"music",                NULL,                 NULL,             1 << 10,      1,           1,        -1 },
-    { NULL,                 "icalingua",           NULL,             1 << 11,      0,           1,        -1 },
+    { NULL,                  "qq",                 NULL,             1 << 11,      0,           1,        -1 },
     { NULL,                 "wechat.exe",          NULL,             1 << 12,      0,           0,        -1 },
     { NULL,                 "wxwork.exe",          NULL,             1 << 13,      0,           0,        -1 },
     { NULL,                  NULL,                "broken",          0,            1,           0,        -1 },
@@ -157,7 +157,7 @@ static Key keys[] = {
     TAGKEYS(XK_9, 8,  0,  0)
     TAGKEYS(XK_n, 9,  "Chromium", "Chromium")
     TAGKEYS(XK_m, 10, "~/scripts/music_player.sh", "pavucontrol")
-    TAGKEYS(XK_z, 11, "icalingua", "icalingua")
+    TAGKEYS(XK_z, 11, "tencent-qq", 0)
     TAGKEYS(XK_x, 12, "/opt/apps/com.qq.weixin.deepin/files/run.sh", "/opt/apps/com.qq.weixin.deepin/files/run.sh")
     TAGKEYS(XK_c, 13, "/opt/apps/com.qq.weixin.work.deepin/files/run.sh", "/opt/apps/com.qq.weixin.work.deepin/files/run.sh")
 };
