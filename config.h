@@ -117,10 +117,10 @@ static Key keys[] = {
     { MODKEY,              XK_j,            focusstack,         {.i = +1} },               /* super tab          |  本tag内切换聚焦窗口 */
     { MODKEY,              XK_k,            focusstack,         {.i = -1} },               /* super shift tab    |  本tag内切换聚焦窗口 */
 
-    { MODKEY,              XK_Left,         viewtoleft,       {0} },                     /* super left         |  聚焦到左边的tag */
-    { MODKEY,              XK_Right,        viewtoright,      {0} },                     /* super right        |  聚焦到右边的tag */
-    { MODKEY|ShiftMask,    XK_Left,         tagtoleft,        {0} },                     /* super shift left   |  将本窗口移动到左边tag */
-    { MODKEY|ShiftMask,    XK_Right,        tagtoright,       {0} },                     /* super shift right  |  将本窗口移动到右边tag */
+    { MODKEY,              XK_u,            viewtoleft,       {0} },                     /* super left         |  聚焦到左边的tag */
+    { MODKEY,              XK_i,            viewtoright,      {0} },                     /* super right        |  聚焦到右边的tag */
+    { MODKEY|ShiftMask,    XK_u,            tagtoleft,        {0} },                     /* super shift left   |  将本窗口移动到左边tag */
+    { MODKEY|ShiftMask,    XK_i,            tagtoright,       {0} },                     /* super shift right  |  将本窗口移动到右边tag */
 
     { MODKEY,              XK_0,            toggleoverview,   {0} },                     /* super 0            |  显示所有tag 或 跳转到聚焦窗口的tag */
 
