@@ -4,6 +4,18 @@ dwm 是一个非常快速, 小巧并使用动态管理窗口的窗口管理器
 
 [展示视频: BV1Ef4y1Z7kA](https://www.bilibili.com/video/BV1Ef4y1Z7kA/)
 
+## 功能
+
+- 支持布局 tile(磁块)、magicgrid(进阶的网格布局)
+- 键盘移动/调整窗口大小 且移动/调整时有窗口间吸附效果
+- 窗口隐藏
+- 窗口可自定义是否全局(在所有tag内展示)
+- 更好的浮动窗口支持
+- 优化后的status2d 状态栏，可用鼠标点击操作
+- 系统托盘支持
+- overview
+- mod + tab, 在窗口间切换 有浮动窗口时仅在浮动窗口切换
+- mod + [tag], 切换tag到指定目录时 可指定一个cmd，若目标tag无窗口 则执行该tag
 ## 安装
 
  sudo make clean install
@@ -22,17 +34,27 @@ export DWM=~/workspace/dwm
 exec dwm
 ```
 
+### Nix Flake
+
+```sh
+nix run github:yaocccc/dwm
+```
+
 ## 状态栏
 
 请将每一个块置为下列样式, 可直接使用本仓库statusbar相关脚本 或参考使用
 
 ```plaintext
-  ^c#2D1B46^^b#335566^^sdate^  11/04 00:42 ^d^
+  ^sdate^^c#2D1B46^^b#335566^  11/04 00:42 ^d^
 
+  ^s?????^ => 点击时的信号值
   ^c?????^ => 前景色
   ^b?????^ => 背景色
-  ^s?????^ => 点击时的信号值
   ^d^      => 重置颜色
+
+  也可以直接从^c ^b 定义前景色 后景色透明度
+  ^c#??????0xff^ => 0xff 前景色透明度
+  ^b#??????0x11^ => 0x11 后景色透明度
 
   本仓库维护了 statusbar脚本 入口为 ./statusbar/statusbar.sh
   
@@ -47,6 +69,8 @@ exec dwm
 
   点击事件发生时 会调用 $DWM/statusbar/statusbar.sh 并传入信号值 请自行处理
   例如 $DWM/statusbar/statusbar.sh date L  # 其中date为信号值 L为按键 (L左键 M中键 R右键)
+
+  可执行 $DWM/statusbar/statusbar.sh check 检查是否有模块存在问题
 ```
 
 ## 随DWM启动的自启动命令
@@ -78,7 +102,7 @@ dwm启动时会去调用 ~/scripts/autostart.sh 脚本(如果存在的话)
 
 4. 字体显示不全
 
-请自行安装字体 仅已archlinux举例
+请自行安装字体 仅以archlinux举例
 
 ```shell
 yay -S nerd-fonts-jetbrains-mono
