@@ -1,7 +1,7 @@
 #! /bin/bash
 # MEM
 
-source ~/.profile
+source ~/.zprofile
 
 this=_mem
 icon_color="^c#3B001B^^b#6873790x88^"

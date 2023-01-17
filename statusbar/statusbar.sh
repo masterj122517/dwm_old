@@ -1,6 +1,5 @@
 #! /bin/bash
-source ~/.config/zsh/env.zsh
-source ~/.profile
+source ~/.zprofile
 
 touch $DWM/statusbar/temp
 

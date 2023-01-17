@@ -1,7 +1,7 @@
 #! /bin/bash
 # 电池电量
 
-source ~/.profile
+source ~/.zprofile
 
 this=_bat
 icon_color="^c#3B001B^^b#4865660x88^"

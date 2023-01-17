@@ -14,7 +14,7 @@
 # 静音 -> Mute: no                                                                                 
 # 音量 -> Volume: front-left: 13183 /  20% / -41.79 dB,   front-right: 13183 /  20% / -41.79 dB
 
-source ~/.profile
+source ~/.zprofile
 this=_vol
 s2d_reset="^d^"
 color="^c#553388^^b#334466^"

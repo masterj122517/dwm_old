@@ -1,7 +1,7 @@
 #! /bin/bash
 # CPU 获取CPU使用率和温度的脚本
 
-source ~/.profile
+source ~/.zprofile
 
 this=_cpu
 icon_color="^c#3E206F^^b#6E51760x88^"

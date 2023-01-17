@@ -1,7 +1,6 @@
 #! /bin/bash
 
-source ~/.profile
-source ~/.config/zsh/env.zsh
+source ~/.zprofile
 this=_icons
 s2d_reset="^d^"
 color="^c#223344^^b#4E5173^"
