@@ -44,7 +44,7 @@ static const unsigned int alphas[][3]    = {          /* 透明度设置 ColFg, 
 };
 
 /* 自定义脚本位置 */
-static const char *autostartscript = "~/scripts/autostart.sh";
+static const char *autostartscript = "$SCRIPTS/autostart.sh";
 static const char *statusbarscript = "$DWM/statusbar/statusbar.sh";
 
 /* 自定义 scratchpad instance */
@@ -173,7 +173,7 @@ static Key keys[] = {
     { MODKEY,              XK_Return, spawn, SHCMD("st") },                                                     /* super enter      | 打开st终端             */
     { MODKEY,              XK_minus,  spawn, SHCMD("st -c global") },                                           /* super +          | 打开全局st终端         */
     { MODKEY,              XK_space,  spawn, SHCMD("st -c float") },                                            /* super space      | 打开浮动st终端         */
-    { MODKEY|ShiftMask,    XK_s,      spawn, SHCMD("zoomer.sh")},
+    { MODKEY|ShiftMask,    XK_s,      spawn, SHCMD("boomer")},
     { 0,                   XK_F12,    spawn, SHCMD("~/scripts/screenshot") },                                   /* super shift a    | 截图                   */
     //{ MODKEY|ShiftMask,    XK_q,      spawn, SHCMD("kill -9 $(xprop | grep _NET_WM_PID | awk '{print $3}')") }, /* super shift q    | 选中某个窗口并强制kill */
     { ShiftMask|ControlMask, XK_c,    spawn, SHCMD("xclip -o | xclip -selection c") },                          /* super shift c    | 进阶复制               */
