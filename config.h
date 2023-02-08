@@ -71,16 +71,16 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 /* 自定义特定实例的显示状态 */
 //            ﮸  ﭮ 切
 // 对应的tag序号以及快捷键:   0:1  1:2  2:3  3:4  4:5  5:9  6:c  7:m  8:0  9:w 10:l
-static const char *tags[] = { "", "", "", "", "", "", "", "", "ﬄ", "﬐", "" };
+static const char *tags[] = { "", "", "", "", "","","","","", "", "", "ﬄ", "﬐", "" };
 static const Rule rules[] = {
     /* class                 instance              title             tags mask     isfloating  isglobal    isnoborder monitor */
-    {"obs",                  NULL,                 NULL,             1 << 5,       0,          0,          0,        -1 },
-    {"chrome",               NULL,                 NULL,             1 << 6,       0,          0,          0,        -1 },
-    {"Chromium",             NULL,                 NULL,             1 << 6,       0,          0,          0,        -1 },
-    {"music",                NULL,                 NULL,             1 << 7,       1,          0,          1,        -1 },
-    { NULL,                 "qq",                  NULL,             1 << 8,       0,          0,          1,        -1 },
-    { NULL,                 "wechat.exe",          NULL,             1 << 9,       0,          0,          0,        -1 },
-    { NULL,                 "wxwork.exe",          NULL,             1 << 10,      0,          0,          0,        -1 },
+    {"obs",                  NULL,                 NULL,             1 << 8,       0,          0,          0,        -1 },
+    {"chrome",               NULL,                 NULL,             1 << 9,       0,          0,          0,        -1 },
+  //{"Chromium",             NULL,                 NULL,             1 << 6,       0,          0,          0,        -1 },
+    {"music",                NULL,                 NULL,             1 << 10,       1,          0,          1,        -1 },
+    { NULL,                 "qq",                  NULL,             1 << 11,       0,          0,          1,        -1 },
+    { NULL,                 "wechat.exe",          NULL,             1 << 12,       0,          0,          0,        -1 },
+    { NULL,                 "wxwork.exe",          NULL,             1 << 13,      0,          0,          0,        -1 },
     { NULL,                  NULL,                "broken",          0,            1,          0,          0,        -1 },
     { "图片查看",           "图片查看",           "图片查看",        0,            1,          0,          0,        -1 },
     { "图片预览",           "图片预览",           "图片预览",        0,            1,          0,          0,        -1 },
@@ -181,17 +181,21 @@ static Key keys[] = {
     /* super key : 跳转到对应tag (可附加一条命令 若目标目录无窗口，则执行该命令) */
     /* super shift key : 将聚焦窗口移动到对应tag */
     /* key tag cmd */
+
     TAGKEYS(XK_1, 0,  0)
     TAGKEYS(XK_2, 1,  0)
     TAGKEYS(XK_3, 2,  0)
     TAGKEYS(XK_4, 3,  0)
     TAGKEYS(XK_5, 4,  0)
-    TAGKEYS(XK_9, 5,  "obs")
-    TAGKEYS(XK_n, 6,  "google-chrome-stable")
-    TAGKEYS(XK_m, 7,  "~/scripts/music_player.sh")
-    TAGKEYS(XK_z, 8,  "linuxqq")
-    TAGKEYS(XK_x, 9,  "/opt/apps/com.qq.weixin.deepin/files/run.sh")
-    TAGKEYS(XK_c, 10, "/opt/apps/com.qq.weixin.work.deepin/files/run.sh")
+    TAGKEYS(XK_6, 5,  0)
+    TAGKEYS(XK_7, 6,  0)
+    TAGKEYS(XK_8, 7,  0)
+    TAGKEYS(XK_9, 8,  "obs")
+    TAGKEYS(XK_n, 9,  "google-chrome-stable")
+    TAGKEYS(XK_m, 10,  "netease-cloud-music")
+    TAGKEYS(XK_z, 11,  "linuxqq")
+    TAGKEYS(XK_x, 12,  "/opt/apps/com.qq.weixin.deepin/files/run.sh")
+    TAGKEYS(XK_c, 13, "")
 };
 static Button buttons[] = {
     /* click               event mask       button            function       argument  */
@@ -215,6 +219,6 @@ static Button buttons[] = {
     { ClkStatusText,       0,               Button5,          clickstatusbar,{0} },                                   // 鼠标滚轮下  |  状态栏       |  根据状态栏的信号执行 ~/scripts/dwmstatusbar.sh $signal D
                                                                                                                       //
     /* 点击bar空白处 */
-    //{ ClkBarEmpty,         0,               Button1,          spawn, SHCMD("~/scripts/call_rofi.sh window") },        // 左键        |  bar空白处    |  rofi 执行 window
-    //{ ClkBarEmpty,         0,               Button3,          spawn, SHCMD("~/scripts/call_rofi.sh drun") },          // 右键        |  bar空白处    |  rofi 执行 drun
+    { ClkBarEmpty,         0,               Button1,          spawn, SHCMD("~/scripts/call_rofi.sh window") },        // 左键        |  bar空白处    |  rofi 执行 window
+    { ClkBarEmpty,         0,               Button3,          spawn, SHCMD("~/scripts/call_rofi.sh drun") },          // 右键        |  bar空白处    |  rofi 执行 drun
 };

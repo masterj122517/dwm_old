@@ -14,15 +14,19 @@
 # 静音 -> Mute: no                                                                                 
 # 音量 -> Volume: front-left: 13183 /  20% / -41.79 dB,   front-right: 13183 /  20% / -41.79 dB
 
-source ~/.zprofile
+tempfile=$(cd $(dirname $0);cd ..;pwd)/temp
 
 this=_vol
 icon_color="^c#442266^^b#7879560x88^"
 text_color="^c#442266^^b#7879560x99^"
 signal=$(echo "^s$this^" | sed 's/_//')
 
+# check
+[ ! "$(command -v pactl)" ] && echo command not found: pactl && exit
+
 update() {
     sink=$(pactl info | grep 'Default Sink' | awk '{print $3}')
+    [ "$sink" = "" ] && $(pactl info | grep '默认音频入口' | awk '{print $2}')
     volunmuted=$(pactl list sinks | grep $sink -A 6 | sed -n '7p' | grep 'Mute: no')
     vol_text=$(pactl list sinks | grep $sink -A 7 | sed -n '8p' | awk '{printf int($5)}')
     if [ ! "$volunmuted" ];      then vol_text="--"; vol_icon="ﱝ";
@@ -34,8 +38,8 @@ update() {
     icon=" $vol_icon "
     text=" $vol_text% "
 
-    sed -i '/^export '$this'=.*$/d' $DWM/statusbar/temp
-    printf "export %s='%s%s%s%s%s'\n" $this "$signal" "$icon_color" "$icon" "$text_color" "$text" >> $DWM/statusbar/temp
+    sed -i '/^export '$this'=.*$/d' $tempfile
+    printf "export %s='%s%s%s%s%s'\n" $this "$signal" "$icon_color" "$icon" "$text_color" "$text" >> $tempfile
 }
 
 notify() {
@@ -47,7 +51,7 @@ click() {
     case "$1" in
         L) notify                                           ;; # 仅通知
         M) pactl set-sink-mute @DEFAULT_SINK@ toggle        ;; # 切换静音
-        R) killall pavucontrol || pavucontrol &             ;; # 打开pavucontrol
+        R) killall pavucontrol || pavucontrol --class=FGN & ;; # 打开pavucontrol
         U) pactl set-sink-volume @DEFAULT_SINK@ +5%; notify ;; # 音量加
         D) pactl set-sink-volume @DEFAULT_SINK@ -5%; notify ;; # 音量减
     esac

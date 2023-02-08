@@ -1,23 +1,32 @@
 #! /bin/bash
 # CPU 获取CPU使用率和温度的脚本
 
-source ~/.zprofile
+tempfile=$(cd $(dirname $0);cd ..;pwd)/temp
 
 this=_cpu
 icon_color="^c#3E206F^^b#6E51760x88^"
 text_color="^c#3E206F^^b#6E51760x99^"
 signal=$(echo "^s$this^" | sed 's/_//')
 
+with_temp() {
+    # check
+    [ ! "$(command -v sensors)" ] && echo command not found: sensors && return
+
+    temp_text=$(sensors | grep Tctl | awk '{printf "%d°C", $2}')  
+    text="$cpu_text $temp_text "
+} 
+
 update() {
     cpu_icon="閭"
     cpu_text=$(top -n 1 -b | sed -n '3p' | awk '{printf "%02d%", 100 - $8}')
-    temp_text=$(sensors | grep Tctl | awk '{printf "%d°C", $2}')  
 
     icon=" $cpu_icon "
-    text=" $cpu_text $temp_text "
+    text=" $cpu_text "
 
-    sed -i '/^export '$this'=.*$/d' $DWM/statusbar/temp
-    printf "export %s='%s%s%s%s%s'\n" $this "$signal" "$icon_color" "$icon" "$text_color" "$text" >> $DWM/statusbar/temp
+    with_temp
+
+    sed -i '/^export '$this'=.*$/d' $tempfile
+    printf "export %s='%s%s%s%s%s'\n" $this "$signal" "$icon_color" "$icon" "$text_color" "$text" >> $tempfile
 }
 
 notify() {
@@ -29,7 +38,7 @@ call_btop() {
     pid2=`ps aux | grep 'st -t statusutil_cpu' | grep -v grep | awk '{print $2}'`
     mx=`xdotool getmouselocation --shell | grep X= | sed 's/X=//'`
     my=`xdotool getmouselocation --shell | grep Y= | sed 's/Y=//'`
-    kill $pid1 && kill $pid2 || st -t statusutil_cpu -g 82x25+$((mx - 328))+$((my + 20)) -c noborder -e btop
+    kill $pid1 && kill $pid2 || st -t statusutil_cpu -g 82x25+$((mx - 328))+$((my + 20)) -c FGN -e btop
 }
 
 click() {
